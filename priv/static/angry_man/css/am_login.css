@@ -1,0 +1,13 @@
+#login_header { position:absolute; top:250px; left:50%; width:500px; height:200px; overflow:hidden; margin-left:-180px;}
+#login_center { position:absolute; top:450px; left:50%; width:300px; height:400px; overflow:hidden; margin-left:-120px;}
+#player_header { position:absolute; top:510px; left:50%; width:500px; height:400px; overflow:hidden; margin-left:-75px;}
+#player_center { position:absolute; top:560px; left:50%; width:230px; height:400px; overflow:hidden; margin-left:-85px;}
+#login_footer { position:absolute; top:715px; left:50%; width:300px; height:200px; overflow:hidden; margin-left:-45px;}
+#credit { position:absolute; top:815px; right:20%; width: 160px; height: 40px; margin: 0; overflow:hidden; }
+#credit ul { position: relative; margin: 0; }
+#credit ol { position: absolute; top: 0; left: 0; margin: 0; padding: 0; list-style-type: none; }
+#credit li { height: 20px; line-height: 20px; }
+
+.player { border-style: solid; border-width: medium; border-color: #FFFFFF; }
+.player.select { border-color: #FF5E00; }
+.character { width:100px; height:100px; }

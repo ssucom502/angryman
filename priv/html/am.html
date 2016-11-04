@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Angry Man</title>
+<link rel="stylesheet" type="text/css" href="/static/bootstrap-3.3.7/css/bootstrap.min.css" >
+<script src="/static/jquery-3.1.1/jquery-3.1.1.min.js"></script>
+<script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script data-main="/static/angry_man/js/dependency.js" src="/static/requirejs/require.js"></script>
+<script src="/static/angry_man/js/dependency.js"></script>
+<!--
+<script src="/static/angry_man/js/am_ws_handler.js"></script>
+<script src="/static/angry_man/js/am_command_handler.js"></script>
+<script src="/static/angry_man/js/am_common.js"></script>
+<script src="/static/angry_man/js/am_player.js"></script>
+<script src="/static/angry_man/js/am_tile.js"></script>
+-->
+<link rel="stylesheet" type="text/css" href="/static/angry_man/css/am_login.css">
+<link rel="stylesheet" type="text/css" href="/static/angry_man/css/am_play.css">
+</head>
+<body>
+<div id="login">
+    <div id="login_header">
+        <img src="/static/angry_man/img/logo.png" alt="angry man">
+    </div>
+
+    <div id="login_center">
+        <div>
+            <input type="text" class="form-control" id="nicknameText" placeholder="Nickname" aria-describedby="basic-addon2">
+        </div>
+    </div>
+
+    <div id="player_header">
+        <img src="/static/angry_man/img/player_select.png" alt="angry man">
+    </div>
+
+    <div id="player_center">
+        <div class="player select" id="am1" style="float:left;">
+            <img class="character" src="/static/angry_man/img/ch1.png" alt="angry man" border-width="15px">
+        </div>
+        <div class="player" id="am2" style="display:inline; float:left;margin-left:10px">
+            <img class="character" src="/static/angry_man/img/ch2.png" alt="angry man">
+        </div>
+    </div>
+
+    <div id="login_footer">
+        <button type="button" class="btn btn-default" id="loginBtn" style="width:150px;height:40px">Play</button>
+    </div>
+
+    <div id="credit">
+        <ul>
+            <ol>
+                <li><a href="https://github.com/pigbrain">pigBrain</a></li>
+                <li style="font-size:20px;"><a href="https://github.com/dogfoot">dogfoot</a></li>
+                <li><a href="https://github.com/dreamguide">dreamguide</a></li>
+                <li><a href="https://github.com/angjoong">angjoong</a></li>
+            </ol>
+        </ul>
+    </div>
+</div>
+<div id="play" style="display:none">
+    <div class="main-wrapper">
+        <canvas id="demo" width="512" height="512"></canvas>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(".player" ).on('click', function() {
+        $(".player" ).removeClass("select");
+        $(this).addClass("select");
+    });
+
+    $("#loginBtn" ).on('click', function() {
+        cm.reqLogin($("#nicknameText").val(), $(".player.select" ).attr('id'));
+    });
+
+    var creditCount = $('#credit li').length;
+    var creditHeight = $('#credit li').height();
+    var creditStep = function(index) {
+        $('#credit ol').delay(300).animate({
+            top: -creditHeight * index,
+        }, 500, function() {
+            creditStep((index + 1) % creditCount);
+        });
+    };
+
+    creditStep(1);
+
+    requirejs(['am_command_handler', 'am_ws_handler'],
+        function(cm, ws) {
+            cm.init();
+            ws.init();
+        }
+    );
+
+</script>
+</body>
+</html> 

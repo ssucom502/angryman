@@ -1,0 +1,13 @@
+{application, am, [
+    {description, ""},
+    {vsn, "1"},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib
+    ]},
+    {mod, {am_app, []}},
+    {env, [
+        {port, 6060}
+    ]}
+]}.
