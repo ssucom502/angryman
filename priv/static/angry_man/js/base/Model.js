@@ -1,7 +1,7 @@
 define(
-['underscore', 'Backbone'],
+['backbone'],
 
-function(_, Backbone) {
+function(Backbone) {
     var Model = Backbone.Model.extend({
 
     });

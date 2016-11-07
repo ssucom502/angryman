@@ -1,14 +1,14 @@
 require.config({
     deps: ['app/main'],
 
-    baseUrl: 'js',
+    baseUrl: '../static/angry_man/js',
 
-    path: {
+    paths: {
         //library
-        'jquery': '../lib/js/jquery-3.1.1.min.js',
-        'underscore': '../lib/js/underscore-min.js',
-        'backbone': '../lib/js/backbone-min.js',
-        'bootstrap': '../lib/js/bootstrap.min.js'
+        'jquery': '../../lib/js/jquery-3.1.1.min',
+        'underscore': '../../lib/js/underscore-min',
+        'backbone': '../../lib/js/backbone-min',
+        'bootstrap': '../../lib/js/bootstrap.min'
     },
 
     shim: {

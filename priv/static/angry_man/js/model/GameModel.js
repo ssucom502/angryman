@@ -2,20 +2,17 @@ define(['underscore', 'base/Model'],
 
 function (_, Model) {
     var GameModel = Model.extend({
-        initialize: function () {
-
-        },
         defaults: {
             previousElapsed: 0,
-            imgSrc: {
-                'tiles': '/static/angry_man/img/tiles.png',
-                'hero': '/static/angry_man/img/character.png'
-            },
             map: null,
             hero: null,
             camera: null,
             keyboard: null,
             tileAtlas: null
+        },
+
+        initialize: function() {
+            console.log(this.toJSON());
         },
 
         update: function (delta) {
@@ -40,18 +37,27 @@ function (_, Model) {
         getDrawConfig: function () {
             var camera = this.get('camera');
             var map = this.get('map');
-            var mapTsize = map.get('tsize');
+
+            var tsize =  map.get('tsize'),
+                startCol =  Math.floor(camera.get('x') / tsize),
+                endCol =  startCol + (camera.get('width') / tsize),
+                startRow =  Math.floor(camera.get('y') / tsize),
+                endRow =  startRow + (camera.get('height') / tsize),
+                offsetX =  -camera.get('x') + startCol * tsize,
+                offsetY =  -camera.get('y') + startRow * tsize,
+                tileAtlas =  this.get('tileAtlas'),
+                getTile =  map.getTile;
 
             return {
-                tsize: mapTsize,
-                startCol: Math.floor(camera.get('x') / mapTsize),
-                endCol: this.startCol + (camera.get('width') / mapTsize),
-                startRow: Math.floor(camera.get('y') / mapTsize),
-                endRow: this.startRow + (camera.get('height') / mapTsize),
-                offsetX: -camera.get('x') + this.startCol * mapTsize,
-                offsetY: -camera.get('y') + this.startRow * mapTsize,
-                tileAtlas: this.get('tileAtlas'),
-                getTile: map.getTile
+                tsize: tsize,
+                startCol: startCol,
+                endCol: endCol,
+                startRow: startRow,
+                endRow: endRow,
+                offsetX: offsetX,
+                offsetY: offsetY,
+                tileAtlas: tileAtlas,
+                getTile: getTile.bind(map)
             };
         }
     });

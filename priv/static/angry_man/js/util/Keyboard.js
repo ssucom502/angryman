@@ -27,16 +27,16 @@ function () {
                 if (this.CODE.STATUS !== keyCode) {
                     switch (keyCode) {
                         case this.CODE.LEFT :
-                            this.move.left();
+                            this.movings.left();
                             break;
                         case this.CODE.RIGHT :
-                            this.move.right();
+                            this.movings.right();
                             break;
                         case this.CODE.UP :
-                            this.move.up();
+                            this.movings.up();
                             break;
                         case this.CODE.DOWN :
-                            this.move.down();
+                            this.movings.down();
                             break;
                     }
 
@@ -50,7 +50,7 @@ function () {
                 event.preventDefault();
                 this._keys[keyCode] = false;
 
-                this.move.stop();
+                this.movings.stop();
                 this.CODE.STATUS = 0;
             }
         },
@@ -61,11 +61,12 @@ function () {
             return this._keys[keyCode];
         },
         // Should be overridden
-        move: {
+        movings: {
             left: function(){console.log('move left');},
             right: function(){console.log('move right');},
             up: function(){console.log('move up');},
-            down: function(){console.log('move down');}
+            down: function(){console.log('move down');},
+            stop: function(){console.log('move stop');}
         }
 
     }

@@ -9,18 +9,12 @@ function (_, View) {
             this._previousElapsed = 0;
 
             this.model.bind('change', this.render, this);
-        },
 
-        run: function() {
-            var p = this.load();
-            Promise.all(p).then(function (loaded) {
-                this.init();
-                window.requestAnimationFrame(this.tick);
-            }.bind(this));
+            window.requestAnimationFrame(this.tick.bind(this));
         },
 
         tick: function(elapsed) {
-            window.requestAnimationFrame(this.tick);
+            window.requestAnimationFrame(this.tick.bind(this));
 
             // clear previous frame
             this.context.clearRect(0, 0, 512, 512);
@@ -31,6 +25,7 @@ function (_, View) {
             this._previousElapsed = elapsed;
 
             this.model.update(delta);
+            this.render();
         },
 
         render: function() {
@@ -40,9 +35,9 @@ function (_, View) {
 
             // draw main character
             this.context.drawImage(
-                hero.image,
-                hero.screenX - hero.width / 2,
-                hero.screenY - hero.height / 2);
+                hero.get('image'),
+                hero.get('screenX') - hero.get('width') / 2,
+                hero.get('screenY') - hero.get('height') / 2);
 
             // draw map top layer
             this._drawLayer(1);

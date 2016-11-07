@@ -3,10 +3,10 @@ define([],
 function() {
     var socket = function(url) {
         var ws = this._webSocket = new WebSocket(url);
-        ws.onopen = this._onOpen;
-        ws.onclose = this._onClose;
-        ws.onmessage = this._onMessage;
-        ws.onerror = this._onError;
+        ws.onopen = this._onOpen.bind(this);
+        ws.onclose = this._onClose.bind(this);
+        ws.onmessage = this._onMessage.bind(this);
+        ws.onerror = this._onError.bind(this);
         this.command = [];
     };
 
@@ -15,8 +15,12 @@ function() {
     };
 
     socket.prototype.send = function(data) {
-        if(this._isOpen) {
+        if(this._isOpen()) {
             this._webSocket.send(data);
+        } else {
+            setTimeout(function() {
+                this.send(data);
+            }.bind(this), 500);
         }
     };
 
