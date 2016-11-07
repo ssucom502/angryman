@@ -11,10 +11,6 @@ function (_, Model) {
             tileAtlas: null
         },
 
-        initialize: function() {
-            console.log(this.toJSON());
-        },
-
         update: function (delta) {
             var dirx = 0;
             var diry = 0;

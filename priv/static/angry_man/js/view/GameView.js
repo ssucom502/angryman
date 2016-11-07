@@ -2,7 +2,7 @@ define(['underscore', 'base/View'],
 
 function (_, View) {
     var GameView = View.extend({
-        tagName: 'canvas',
+        el: '#demo',
 
         initialize: function() {
             this.context = this.el.getContext('2d');
@@ -37,12 +37,15 @@ function (_, View) {
             this.context.drawImage(
                 hero.get('image'),
                 hero.get('screenX') - hero.get('width') / 2,
-                hero.get('screenY') - hero.get('height') / 2);
+                hero.get('screenY') - hero.get('height') / 2
+            );
 
             // draw map top layer
             this._drawLayer(1);
 
             //this._drawGrid();
+
+            return this;
         },
 
         _drawLayer: function(layer) {

@@ -16,8 +16,6 @@ function (_, Model) {
         initialize: function() {
             this.set('maxX', this.get('mapCols') * this.get('mapTsize') - this.get('width'));
             this.set('maxY', this.get('mapRows') * this.get('mapTsize') - this.get('height'));
-
-            console.log(this.toJSON());
         },
         follow: function(sprite) {
             this.following = sprite;

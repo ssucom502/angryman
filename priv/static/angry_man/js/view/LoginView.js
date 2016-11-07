@@ -9,7 +9,6 @@ function (_, View) {
             'click #loginBtn' : 'login'
         },
         changePlayer: function(event) {
-            console.log(event);
             this.$('.player').removeClass('select');
             $(event.target).closest('.player').addClass('select');
         },

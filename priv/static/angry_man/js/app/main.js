@@ -24,26 +24,26 @@ function($, _, Backbone, Socket, Command, Loader, Keyboard, LoginView, CreditsVi
             $('#credit').html(this.creditsView.el);
         },
         gameApp: function(nickName, character) {
-            var promise = this.loadImage();
+            var promise = this._loadImage();
 
             Promise.all(promise).then(function() {
-                this.loadGame(nickName, character);
+                this._loadGame(nickName, character);
             }.bind(this));
 
         },
-        loadImage: function() {
+        _loadImage: function() {
             return [
                 Loader.loadImage('tiles', 'http://10.77.32.44:6060/static/angry_man/img/tiles.png'),
                 Loader.loadImage('hero', 'http://10.77.32.44:6060/static/angry_man/img/character.png')
             ];
         },
-        loadGame: function(nickName, character) {
+        _loadGame: function(nickName, character) {
             this.socket = new Socket('ws://10.77.32.44:6060/am');
             this.command = new Command(this.socket);
             this.command.reqLogin(nickName, character);
 
             this.map = new Map();
-            this.hero = new Hero({map: this.map, image: Loader.getImage('hero')});
+            this.hero = new Hero({x: 160, y: 160, map: this.map, image: Loader.getImage('hero')});
             this.camera = new Camera({
                 width: 512,
                 height:512,
@@ -66,6 +66,7 @@ function($, _, Backbone, Socket, Command, Loader, Keyboard, LoginView, CreditsVi
             });
 
             this.gameView = new GameView({model: this.game});
+            $('#play').html(this.gameView.el);
         }
 
     });

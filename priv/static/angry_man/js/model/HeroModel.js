@@ -16,8 +16,6 @@ function (_, Model) {
             this.set('height', tsize);
 
             this.SPEED = 256;   // pixels per second
-
-            console.log(this.toJSON());
         },
 
         move: function(delta, dirx, diry) {

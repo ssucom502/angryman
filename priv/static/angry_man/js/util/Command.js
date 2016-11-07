@@ -32,8 +32,6 @@ function() {
     };
 
     Command.prototype.resLogin = function(data) {
-        console.log("response login " + data);
-
         $("#login").hide();
         $("#play").show();
     };

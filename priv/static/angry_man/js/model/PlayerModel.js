@@ -2,16 +2,12 @@ define(['underscore', 'base/Model'],
 
 function (_, Model) {
     var PlayerModel = Model.extend({
-        defualts: {
+        defaults: {
             positionX: 0,
             positionY: 0,
             directionX: 0,
             directionY: 0,
             command: null
-        },
-
-        initialize: function() {
-            console.log(this.toJSON());
         },
 
         move: function(directionX, directionY) {
